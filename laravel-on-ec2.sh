@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
+# sudo -s
+# export LC_ALL=en_US.UTF-8
+
 # Remove Bug File
 
 rm /boot/grub/menu.lst
+
+# Force Locale
+
+locale-gen en_US.UTF-8
+echo "LANGUAGE=en_US.UTF-8" >> /etc/default/locale
+echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
+dpkg-reconfigure locales
 
 # Update Package List
 
@@ -10,14 +20,6 @@ apt-get update
 
 # Update System Packages
 apt-get -y upgrade
-
-# Force Locale
-
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-locale-gen en_US.UTF-8
-dpkg-reconfigure locales
 
 # Install Some PPAs
 
