@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-echo "use sudo"
-sudo -s
-sudo rm /boot/grub/menu.lst
+# Remove Bug File
+
+rm /boot/grub/menu.lst
 
 # Update Package List
 
@@ -14,10 +14,9 @@ apt-get -y upgrade
 # Force Locale
 
 echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
-locale-gen en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+echo "LANGUAGE=en_US.UTF-8" >> /etc/default/locale
+echo "LANG=en_US.UTF-8" >> /etc/default/locale
+echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
@@ -186,64 +185,3 @@ apt-get install -y nodejs
 # Install SQLite
 
 apt-get install -y sqlite3 libsqlite3-dev
-
-# Install MySQL
-
-debconf-set-selections <<< "mysql-server mysql-server/root_password password secret"
-debconf-set-selections <<< "mysql-server mysql-server/root_password_again password secret"
-apt-get install -y mysql-server-5.6
-
-# Configure MySQL Remote Access
-
-sed -i '/^bind-address/s/bind-address.*=.*/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO root@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-service mysql restart
-
-mysql --user="root" --password="secret" -e "CREATE USER 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret';"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql --user="root" --password="secret" -e "FLUSH PRIVILEGES;"
-mysql --user="root" --password="secret" -e "CREATE DATABASE homestead;"
-service mysql restart
-
-# Add Timezone Support To MySQL
-
-mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user=root --password=secret mysql
-
-# Install Postgres
-
-apt-get install -y postgresql-9.4 postgresql-contrib-9.4
-
-# Configure Postgres Remote Access
-
-sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/9.4/main/postgresql.conf
-echo "host    all             all             10.0.2.2/32               md5" | tee -a /etc/postgresql/9.4/main/pg_hba.conf
-sudo -u postgres psql -c "CREATE ROLE homestead LOGIN UNENCRYPTED PASSWORD 'secret' SUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;"
-sudo -u postgres /usr/bin/createdb --echo --owner=homestead homestead
-service postgresql restart
-
-# Install Blackfire
-
-apt-get install -y blackfire-agent blackfire-php
-
-# Install A Few Other Things
-
-apt-get install -y redis-server memcached beanstalkd
-
-# Configure Beanstalkd
-
-sed -i "s/#START=yes/START=yes/" /etc/default/beanstalkd
-/etc/init.d/beanstalkd start
-
-# Enable Swap Memory
-
-/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
-/sbin/mkswap /var/swap.1
-/sbin/swapon /var/swap.1
-
-# Minimize The Disk Image
-
-echo "Minimizing disk image..."
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
-sync
