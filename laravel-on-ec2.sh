@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+echo "use sudo"
 sudo -s
+sudo rm /boot/grub/menu.lst
 
 # Update Package List
 
