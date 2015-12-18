@@ -10,6 +10,7 @@ ec2-laravel-evn-installer
 ## Step 1) 安裝並執行腳本 / Install and excute the script
 
 ```bash
+$ sudo apt-get install git
 $ git clone https://github.com/fukuball/ec2-laravel-evn-installer.git
 $ cd ec2-laravel-evn-installer
 $ sh laravel-on-ec2.sh
