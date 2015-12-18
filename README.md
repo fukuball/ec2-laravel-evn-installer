@@ -37,7 +37,8 @@ please create a GitHub OAuth token to go over the API rate limit
 設定 storage 資料夾權限： / Setup storage folder access permission:
 
 ```bash
-chown -R ubuntu:ubuntu storage
+$ cd your-project-name
+$ chown -R ubuntu:ubuntu storage
 ```
 
 ## Step 3) 修改 Nginx 設定 / Modify Nginx config
