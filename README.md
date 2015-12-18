@@ -1,17 +1,15 @@
-# ec2-laravel-evn-installer
+ec2-laravel-evn-installer
+==========
 
 在 AWS EC2 上快速架好符合 Laravel 運行的環境。
 Setup Laravel excutable enviroment on AWS EC2 quickly.
 
 ## Step 0) 登入你的 AWS EC2 / Login your AWS EC2
-==========
 
 創建一個全新的 Ubuntu 14.04 AWS EC2 Instance，並登入你的 EC2。
 Create a brand new Ubuntu 14.04 AWS EC2 Instance, and login.
 
-
 ## Step 1) 安裝並執行腳本 / Install and excute the script
-==========
 
 ```bash
 $ git clone https://github.com/fukuball/ec2-laravel-evn-installer.git
@@ -23,7 +21,6 @@ $ sh laravel-on-ec2.sh
 Basically, you have already complete a Laravel excutable enviroment.
 
 ## Step 2) 安裝 Laravel / Install Laravel
-==========
 
 ```bash
 $ cd /var/www
@@ -49,7 +46,6 @@ chown -R ubuntu:ubuntu storage
 ```
 
 ## Step 3) 修改 Nginx 設定 / Modify Nginx config
-==========
 
 ```bash
 $ sudo vim /etc/nginx/sites-available/your-project-name
@@ -115,7 +111,6 @@ $ service nginx restart
 ```
 
 ## Step 4) 完成了！ / Complete!
-==========
 
 用你最愛的瀏覽器打開 AWS EC2 提供的 Server 網址，你就可以看到下圖。
 Use your favorite browser open the url AWS EC2 provided, and you can see the Lavavel works like below.
