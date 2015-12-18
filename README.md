@@ -10,7 +10,8 @@ ec2-laravel-evn-installer
 ## Step 1) 安裝並執行腳本 / Install and excute the script
 
 ```bash
-$ sudo apt-get install git
+$ sudo -s
+$ apt-get install git
 $ git clone https://github.com/fukuball/ec2-laravel-evn-installer.git
 $ cd ec2-laravel-evn-installer
 $ sh laravel-on-ec2.sh
@@ -42,7 +43,7 @@ chown -R ubuntu:ubuntu storage
 ## Step 3) 修改 Nginx 設定 / Modify Nginx config
 
 ```bash
-$ sudo vim /etc/nginx/sites-available/your-project-name
+$ vim /etc/nginx/sites-available/your-project-name
 ```
 
 進入 vim 編輯器，複製貼上以下內容，存下編輯內容後離開編輯器： / Enter vim editor, copy and past content below, save and exit the editor:
