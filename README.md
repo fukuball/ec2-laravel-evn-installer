@@ -1,13 +1,11 @@
 ec2-laravel-evn-installer
 ==========
 
-在 AWS EC2 上快速架好符合 Laravel 運行的環境。
-Setup Laravel excutable enviroment on AWS EC2 quickly.
+在 AWS EC2 上快速架好符合 Laravel 運行的環境。 / Setup Laravel excutable enviroment on AWS EC2 quickly.
 
 ## Step 0) 登入你的 AWS EC2 / Login your AWS EC2
 
-創建一個全新的 Ubuntu 14.04 AWS EC2 Instance，並登入你的 EC2。
-Create a brand new Ubuntu 14.04 AWS EC2 Instance, and login.
+創建一個全新的 Ubuntu 14.04 AWS EC2 Instance，並登入你的 EC2。 / Create a brand new Ubuntu 14.04 AWS EC2 Instance, and login.
 
 ## Step 1) 安裝並執行腳本 / Install and excute the script
 
@@ -17,8 +15,7 @@ $ cd ec2-laravel-evn-installer
 $ sh laravel-on-ec2.sh
 ```
 
-基本上這樣就已經裝好 Laravel 可以運行的環境。
-Basically, you have already complete a Laravel excutable enviroment.
+基本上這樣就已經裝好 Laravel 可以運行的環境。 / Basically, you have already complete a Laravel excutable enviroment.
 
 ## Step 2) 安裝 Laravel / Install Laravel
 
@@ -27,19 +24,15 @@ $ cd /var/www
 $ composer create-project laravel/laravel your-project-name --prefer-dist
 ```
 
-如果看到：
-If you see this message:
+如果看到： / If you see this message:
 
 ```bash
 please create a GitHub OAuth token to go over the API rate limit
 ```
 
-請至 [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) 取得 token，但也可以直接按 enter 跳過。
+請至 [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) 取得 token，但也可以直接按 enter 跳過。 / Please go to [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to get token, but you can skip this by just pressing enter button.
 
-Please go to [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to get token, but you can skip this by just pressing enter button.
-
-設定 storage 資料夾權限：
-Setup storage folder access permission:
+設定 storage 資料夾權限： / Setup storage folder access permission:
 
 ```bash
 chown -R ubuntu:ubuntu storage
@@ -51,8 +44,7 @@ chown -R ubuntu:ubuntu storage
 $ sudo vim /etc/nginx/sites-available/your-project-name
 ```
 
-進入 vim 編輯器，複製貼上以下內容，存下編輯內容後離開編輯器：
-Enter vim editor, copy and past content below, save and exit the editor:
+進入 vim 編輯器，複製貼上以下內容，存下編輯內容後離開編輯器： / Enter vim editor, copy and past content below, save and exit the editor:
 
 ```vim
 server {
@@ -96,15 +88,13 @@ server {
 }
 ```
 
-連結設定檔：
-Link the config file:
+連結設定檔： / Link the config file:
 
 ```bash
 $ ln -s /etc/nginx/sites-available/your-project-name /etc/nginx/sites-enabled/your-project-name
 ```
 
-開啓 Nginx 伺服器：
-Start Nginx server:
+開啓 Nginx 伺服器： / Start Nginx server:
 
 ```bash
 $ service nginx restart
@@ -112,8 +102,7 @@ $ service nginx restart
 
 ## Step 4) 完成了！ / Complete!
 
-用你最愛的瀏覽器打開 AWS EC2 提供的 Server 網址，你就可以看到下圖。
-Use your favorite browser open the url AWS EC2 provided, and you can see the Lavavel works like below.
+用你最愛的瀏覽器打開 AWS EC2 提供的 Server 網址，你就可以看到下圖。 / Use your favorite browser open the url AWS EC2 provided, and you can see the Lavavel works like below.
 
 ![laravel-demo-pic](https://raw.github.com/fukuball/ec2-laravel-evn-installer/master/laravel-demo-pic.png)
 
