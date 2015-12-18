@@ -3,16 +3,14 @@
 在 AWS EC2 上快速架好符合 Laravel 運行的環境。
 Setup Laravel excutable enviroment on AWS EC2 quickly.
 
-# Usage
-
-Step 0) 登入你的 AWS EC2 / Login your AWS EC2
+## Step 0) 登入你的 AWS EC2 / Login your AWS EC2
 ==========
 
 創建一個全新的 Ubuntu 14.04 AWS EC2 Instance，並登入你的 EC2。
 Create a brand new Ubuntu 14.04 AWS EC2 Instance, and login.
 
 
-Step 1) 安裝並執行腳本 / Install and excute the script
+## Step 1) 安裝並執行腳本 / Install and excute the script
 ==========
 
 ```bash
@@ -24,7 +22,7 @@ $ sh laravel-on-ec2.sh
 基本上這樣就已經裝好 Laravel 可以運行的環境。
 Basically, you have already complete a Laravel excutable enviroment.
 
-Step 2) 安裝 Laravel / Install Laravel
+## Step 2) 安裝 Laravel / Install Laravel
 ==========
 
 ```bash
@@ -50,7 +48,7 @@ Setup storage folder access permission:
 chown -R ubuntu:ubuntu storage
 ```
 
-Step 3) 修改 Nginx 設定 / Modify Nginx config
+## Step 3) 修改 Nginx 設定 / Modify Nginx config
 ==========
 
 ```bash
@@ -116,7 +114,7 @@ Start Nginx server:
 $ service nginx restart
 ```
 
-Step 4) 完成了！ / Complete!
+## Step 4) 完成了！ / Complete!
 ==========
 
 用你最愛的瀏覽器打開 AWS EC2 提供的 Server 網址，你就可以看到下圖。
