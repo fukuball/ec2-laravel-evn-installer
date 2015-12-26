@@ -34,11 +34,10 @@ please create a GitHub OAuth token to go over the API rate limit
 
 請至 [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) 取得 token，但也可以直接按 enter 跳過。 / Please go to [GitHub](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to get token, but you can skip this by just pressing enter button.
 
-設定 storage 資料夾權限： / Setup storage folder access permission:
+設定 project 資料夾權限： / Setup project folder access permission:
 
 ```bash
-$ cd your-project-name
-$ chown -R ubuntu:ubuntu storage
+$ chown -R ubuntu:ubuntu your-project-name
 ```
 
 ## Step 3) 修改 Nginx 設定 / Modify Nginx config
