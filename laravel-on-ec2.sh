@@ -4,13 +4,9 @@
 
 apt-get update
 
-# Update Grub Bootloader
+# Remove Bug File
 
-echo "set grub-pc/install_devices /dev/sda" | debconf-communicate
-apt-get -y remove grub-pc
-apt-get -y install grub-pc
-grub-install /dev/sda
-update-grub
+rm /boot/grub/menu.lst
 
 # Update System Packages
 apt-get -y upgrade
@@ -19,6 +15,7 @@ apt-get -y upgrade
 
 echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
 locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Install Some PPAs
 
@@ -188,15 +185,6 @@ apt-get install -y nodejs
 
 apt-get install -y sqlite3 libsqlite3-dev
 
-# Install Blackfire
-
-apt-get install -y blackfire-agent blackfire-php
-
 # Install A Few Other Things
 
-apt-get install -y memcached beanstalkd
-
-# Configure Beanstalkd
-
-sudo sed -i "s/#START=yes/START=yes/" /etc/default/beanstalkd
-sudo /etc/init.d/beanstalkd start
+apt-get install -y memcached
